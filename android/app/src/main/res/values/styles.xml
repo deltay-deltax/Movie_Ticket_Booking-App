@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Required splash screen theme -->
+    <style name="LaunchTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
+
+    <!-- Required Stripe theme -->
+    <style name="Theme.MovieBookingApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- No custom colors needed -->
+    </style>
+
+    <!-- Theme referenced in AndroidManifest -->
+    <style name="NormalTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+</resources>

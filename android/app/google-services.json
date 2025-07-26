@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "953437535355",
+    "project_id": "amazefun-f5a39",
+    "storage_bucket": "amazefun-f5a39.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953437535355:android:04430cac505662d68bf6de",
+        "android_client_info": {
+          "package_name": "com.example.movie_booking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "your key"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
