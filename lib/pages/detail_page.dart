@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movie_booking_app/service/constant.dart';
+import 'package:random_string/random_string.dart';
 
 class MovieDetailPage extends StatefulWidget {
   String image, name, shortdetail, moviedetail;
@@ -313,6 +316,25 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       await Stripe.instance
           .presentPaymentSheet()
           .then((value) async {
+            String uniqueId = randomAlphaNumeric(5);
+            final user = FirebaseAuth.instance.currentUser;
+            if (user != null) {
+              await FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(user.uid)
+                  .collection('bookings')
+                  .add({
+                    "Movie": widget.name,
+                    "MovieImage": widget.image,
+                    "Date": dateList[selectedDateIndex],
+                    "Time": timeSlots[selectedTimeIndex],
+                    "Tickets": ticketCount,
+                    "TotalPrice": ticketCount * widget.price,
+                    "QrId": uniqueId,
+                    "BookedAt": FieldValue.serverTimestamp(),
+                  });
+            }
+
             // Show success dialog
             showDialog(
               context: context,
@@ -331,6 +353,15 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       ],
                     ),
                   ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.green,
+                content: Text(
+                  'Booked Successfully',
+                  style: TextStyle(color: Colors.white, fontSize: 18.0),
+                ),
+              ),
             );
 
             paymentIntent = null;

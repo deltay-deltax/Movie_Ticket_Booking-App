@@ -30,6 +30,6 @@ class _MyAppState extends State<MyApp> {
   // ✅ correct
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: SignUpPage());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: LoginPage());
   }
 }

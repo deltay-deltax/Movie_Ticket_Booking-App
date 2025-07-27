@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_booking_app/pages/bottomnav.dart';
 import 'package:movie_booking_app/pages/home.dart';
 import 'package:movie_booking_app/pages/login.dart';
+import 'package:movie_booking_app/service/database.dart';
 import 'package:random_string/random_string.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -25,12 +26,24 @@ class _SignUpPageState extends State<SignUpPage> {
           mailcontroller.text.isNotEmpty) {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
+        String uid = userCredential.user!.uid;
+        Map<String, dynamic> userInfoMap = {
+          "Name": namecontroller.text,
+          "Email": mailcontroller.text,
+          "Id": uid,
+        };
+        await DatabaseMethods().addUserDetails(userInfoMap, uid); // ✅ use UID
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
+            backgroundColor: Colors.green,
             content: Text(
               'Registered Successfully !!',
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         );
@@ -194,6 +207,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           children: [
                             Expanded(
                               child: TextFormField(
+                                obscureText: true,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please Enter a Password';
@@ -270,7 +284,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => LoginPage(),

@@ -12,3 +12,8 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+# Firebase config
+app/google-services.json
+
+# Dart config - constants
+lib/service/constant.dart

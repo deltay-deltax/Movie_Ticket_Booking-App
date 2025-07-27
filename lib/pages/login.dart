@@ -24,10 +24,13 @@ class _LoginPageState extends State<LoginPage> {
         email: email,
         password: password,
       );
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('LoggedIn Successfully')));
-      Navigator.push(
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          content: Text('LoggedIn Successfully'),
+        ),
+      );
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => BottomNav()),
       );
@@ -36,18 +39,31 @@ class _LoginPageState extends State<LoginPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'User Not Found ,Please Enter Valid Email',
-              style: TextStyle(fontSize: 18.0),
+              'User Not Found, Please Enter Valid Email',
+              style: TextStyle(fontSize: 18.0, color: Colors.white),
             ),
+            backgroundColor: Colors.red,
           ),
         );
       } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Wrong Password ,Please Enter Valid Password',
-              style: TextStyle(fontSize: 18.0),
+              'Wrong Password, Please Try Again',
+              style: TextStyle(fontSize: 18.0, color: Colors.white),
             ),
+            backgroundColor: Colors.red,
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Invalid Email or Password',
+
+              style: TextStyle(fontSize: 18.0, color: Colors.white),
+            ),
+            backgroundColor: Colors.red,
           ),
         );
       }
@@ -141,10 +157,11 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Expanded(
                               child: TextFormField(
+                                obscureText: true,
                                 controller: passwordcontroller,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Plese enter Email';
+                                    return 'Plese enter Password';
                                   }
                                   return null;
                                 },
