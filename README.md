@@ -90,20 +90,13 @@ lib/
 
 ## 📸 Screenshots
 
-> Add these in your project and link here:
-```
-assets/screenshots/home.png
-assets/screenshots/detail.png
-assets/screenshots/booking.png
-```
+![WhatsApp Image 2025-08-01 at 21 13 05_3d286e1c](https://github.com/user-attachments/assets/e96f073a-618e-4b41-88b3-cf8c49cda57b)
 
-```md
-![Home](assets/screenshots/home.png)
-![Detail Page](assets/screenshots/detail.png)
-![Booking](assets/screenshots/booking.png)
-```
 
----
+![WhatsApp Image 2025-08-01 at 21 13 05_e630a48f](https://github.com/user-attachments/assets/1a257436-a2a8-4261-8a0e-f835f50057bc)
+
+![WhatsApp Image 2025-08-01 at 21 13 05_fb19d38f](https://github.com/user-attachments/assets/6cc22bd7-3978-437f-9630-4e4bbfb36a51)
+
 
 ## 🔮 Future Enhancements
 
